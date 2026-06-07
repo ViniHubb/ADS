@@ -1,0 +1,25 @@
+# ---- Dataset (grande demais para o GitHub; baixar do Kaggle) ----
+dataset/*.csv
+dataset/*.zip
+# mantemos o datasetinfo.txt e este .gitkeep no repositorio:
+!dataset/datasetinfo.txt
+!dataset/.gitkeep
+
+# ---- Saidas geradas pelos scripts ----
+resultados/
+
+# ---- Ambiente virtual ----
+.venv/
+venv/
+env/
+
+# ---- Cache do Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ---- Editores / SO ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
