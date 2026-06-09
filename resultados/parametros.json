@@ -1,0 +1,6 @@
+{
+  "lambda_medio_reqs": 2.3015,
+  "lambda_pico_reqs": 8.0,
+  "arquivo_mes": "2019-Oct.csv",
+  "obs": "lambda em requisicoes/segundo, extraido contando eventos por segundo no mes inteiro. Cada evento = 1 requisicao HTTP."
+}
