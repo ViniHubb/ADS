@@ -6,7 +6,7 @@ dataset/*.zip
 !dataset/.gitkeep
 
 # ---- Saidas geradas pelos scripts ----
-resultados/
+
 
 # ---- Ambiente virtual ----
 .venv/
