@@ -1,12 +1,13 @@
 # Análise de Desempenho | E-commerce de Cosméticos
 
-Dataset: [eCommerce events history in cosmetics shop](https://www.kaggle.com/datasets/mkechinov/ecommerce-events-history-in-cosmetics-shop) — **não incluso** (~2,4 GB).
+Dataset: [eCommerce events history in cosmetics shop](https://www.kaggle.com/datasets/mkechinov/ecommerce-events-history-in-cosmetics-shop) — **baixado automaticamente** (~700 MB/mês).
 
 ## Estrutura
 
 | Arquivo | Descrição |
 |---|---|
 | `config.py` | Parâmetros globais — **edite aqui** |
+| `baixar_dataset.py` | Baixa o CSV do mês do Kaggle se não existir em `dataset/` |
 | `etapa2_caracterizacao.py` | Estatísticas, PCA, K-Means |
 | `etapa3_filas_experimentos.py` | Filas M/M/c, simulação, fatorial 2^k |
 | `requirements.txt` | Dependências |
@@ -32,16 +33,13 @@ py -3.12 -m venv .venv
 pip install -r requirements.txt
 ```
 
-### 3. Baixar o dataset
-
-Coloque os CSVs em `dataset/`. O mínimo necessário para a config padrão é `2019-Oct.csv`.
-Para usar outra pasta: `$env:ADS_DATASET = "D:\dados"`.
-
-### 4. Rodar os scripts (nesta ordem)
+### 3. Rodar os scripts (nesta ordem)
 
 ```powershell
-python etapa2_caracterizacao.py       # gera resultados/parametros.json
+python etapa2_caracterizacao.py       # baixa o dataset e gera resultados/parametros.json
 python etapa3_filas_experimentos.py   # consome parametros.json
 ```
+
+O dataset é baixado automaticamente via `kagglehub` na primeira execução (sem token). Já tem os CSVs? Coloque-os em `dataset/` que o download é pulado (outra pasta: `$env:ADS_DATASET = "D:\dados"`).
 
 Saída numérica no console; gráficos em `resultados/figuras/`.

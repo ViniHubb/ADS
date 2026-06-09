@@ -34,6 +34,7 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 
 import config
+import baixar_dataset
 
 
 # ---------------------------------------------------------------------------
@@ -70,15 +71,10 @@ def carregar_amostra_e_lambda():
     Retorna (df_amostra, lambda_medio, lambda_pico).
     """
     titulo("PASSO 1 - Leitura amostrada do dataset e taxa de chegada (lambda)")
-    if not os.path.exists(config.CAMINHO_CSV):
-        raise SystemExit(
-            f"ERRO: arquivo do dataset nao encontrado:\n   {config.CAMINHO_CSV}\n\n"
-            f"Baixe o dataset do Kaggle e coloque os CSVs em:\n"
-            f"   {config.PASTA_DADOS}\n"
-            f"https://www.kaggle.com/datasets/mkechinov/"
-            f"ecommerce-events-history-in-cosmetics-shop\n"
-            f"(ou aponte a variavel de ambiente ADS_DATASET para a pasta dos CSVs)")
-    print(f"Arquivo: {config.CAMINHO_CSV}")
+    # Baixa automaticamente do Kaggle (via kagglehub) se o CSV ainda nao
+    # existir; se ja existir localmente, usa esse. Veja baixar_dataset.py.
+    caminho_csv = baixar_dataset.garantir_dataset()
+    print(f"Arquivo: {caminho_csv}")
     print(f"Amostragem: ~1/{config.SAMPLE_DIVISOR} das sessoes "
           f"(deterministica por user_session)")
 
@@ -90,7 +86,7 @@ def carregar_amostra_e_lambda():
     total_eventos = 0
 
     leitor = pd.read_csv(
-        config.CAMINHO_CSV,
+        caminho_csv,
         usecols=colunas,
         chunksize=config.CHUNKSIZE,
     )
